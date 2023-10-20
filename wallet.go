@@ -30,6 +30,21 @@ func NewEhereumWallet() (*Wallet, error) {
 	return w, nil
 }
 
+func ImportWallet(privateKeyHex string) (*Wallet, error) {
+	w := &Wallet{
+		Meta: walletMetadata{
+			DisplayName: "Main Wallet",
+			Created:     time.Now().Local().Format("20060102 15:04:05"),
+			// TODO: set correctly
+			GenesisID: "",
+		},
+		Secrets: walletSecrets{
+			PrivateKey: privateKeyHex,
+		},
+	}
+	return w, nil
+}
+
 // Wallet is the basic data structure.
 type Wallet struct {
 	// keystore string
